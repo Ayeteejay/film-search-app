@@ -8,10 +8,11 @@ $primary-white: #fff;
 $secondary-blue: #0e8bff;
 $secondary-gray: #3e3e3e;
 
-$sm-font: 0.9rem;
-$md-font: 1rem;
-$lg-font: 1.5rem;
-$xl-font: 2rem;
+$xsmall: 0.6rem;
+$small: 0.9rem;
+$medium: 1rem;
+$large: 1.5rem;
+$xlarge: 2rem;
 
 body {
   background-color: $primary-black;
@@ -20,13 +21,21 @@ body {
   display: flex;
   justify-content: center;
   h1 {
-    font-size: $lg-font;
+    font-size: $large;
     color: $primary-white;
     margin: 0;
     padding: 0 0 0.5rem 0;
   }
+  h2 {
+    font-size: $xlarge;
+  }
+  h5 {
+    margin: 0 0 0.4rem 0;
+    text-transform: uppercase;
+    font-size: $xsmall;
+  }
   p {
-    font-size: $md-font;
+    font-size: $medium;
     color: $primary-gray;
     padding: 0;
     margin: 0;
@@ -45,7 +54,7 @@ body {
     border: 1px solid $secondary-gray;
     background-color: $primary-black;
     transition: 0.4s;
-    font-size: $md-font;
+    font-size: $medium;
     cursor: pointer;
     outline: none;
   }
@@ -82,7 +91,7 @@ body {
     width: 100%;
     border: 1px solid $secondary-gray;
     background-color: $primary-black;
-    font-size: $md-font;
+    font-size: $medium;
     color: $primary-white;
     transition: 0.3s;
     outline: none;
@@ -107,27 +116,61 @@ body {
   padding: 0 0 1rem 0;
   margin: 0 0 1rem 0;
   display: flex;
-  justify-content: space-between;
 }
-.film-description {
+.description {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  padding: 2rem 5rem 5rem 0;
+  flex-direction: column;
+  justify-content: space-between;
+  p {
+    font-size: $medium;
+    line-height: $large;
+    color: $primary-gray;
+    font-weight: 200;
+  }
 }
-.film-poster {
+
+.poster {
   display: flex;
   align-items: center;
   img {
-    max-width: 200px;
+    max-width: 300px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
   }
 }
-.film-release {
+.release {
+  padding: 2rem 0;
 }
-.film-rating {
+.runtime {
+  padding: 2rem 0;
+}
+.genre {
+  padding: 2rem 0;
+}
+.rating {
+  padding: 2rem 0;
+}
+.genre {
+  padding: 2rem 0;
+}
+.facts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.staring {
+  padding: 2rem 0;
+}
+
+.details {
+}
+// Search section
+.search-again {
+  display: flex;
+  grid-auto-flow: column;
 }
 .footer {
-  font-size: $sm-font;
+  font-size: $small;
   color: $primary-white;
   font-weight: regular;
   display: flex;
@@ -149,7 +192,7 @@ body {
   p {
     color: $primary-white;
     padding: 1rem 0rem;
-    font-size: $sm-font;
+    font-size: $small;
   }
   span {
     color: $primary-gray;
