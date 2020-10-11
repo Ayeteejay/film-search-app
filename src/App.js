@@ -59,6 +59,10 @@ const App = () => {
                     <p>Sci-fi Adventure</p>
                   </div>
                 </div>
+                <div className="starring">
+                  <h5>Staring</h5>
+                  <p>Someone Jones, Someone Harris</p>
+                </div>
                 <div className="details">
                   <h5>Movie Description</h5>
                   <p>
