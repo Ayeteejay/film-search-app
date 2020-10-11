@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700;800&display=swap");
+
+$primary-font: "Work Sans", sans-serif;
+
+$primary-black: #151515;
+$primary-gray: #9b9b9b;
+$primary-white: #fff;
+$secondary-blue: #0e8bff;
+$secondary-gray: #3e3e3e;
+
+$sm-font: 0.9rem;
+$md-font: 1rem;
+$lg-font: 1.5rem;
+$xl-font: 2rem;
+
+body {
+  background-color: $primary-black;
+  font-family: $primary-font;
+  color: $primary-white;
+  display: flex;
+  justify-content: center;
+  h1 {
+    font-size: $lg-font;
+    color: $primary-white;
+    margin: 0;
+    padding: 0 0 0.5rem 0;
+  }
+  p {
+    font-size: $md-font;
+    color: $primary-gray;
+    padding: 0;
+    margin: 0;
+  }
+}
+.site-container {
+  width: 80vw;
+  height: 90vh;
+}
+
+.header {
+  height: 40vh;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.search {
+  border-top: 1px solid $secondary-gray;
+  padding: 2rem;
+  margin: 4rem;
+  p {
+    color: $primary-white;
+  }
+}
+
+.footer {
+  font-size: $sm-font;
+  color: $primary-white;
+  font-weight: regular;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-top: 1px solid $secondary-gray;
+  a {
+    color: $primary-white;
+    transition: 0.3s;
+    position: relative;
+    text-decoration: none;
+    border-bottom: 1px solid white;
+    padding-bottom: 2px;
+  }
+  a:hover {
+    border-bottom: 1px solid $secondary-blue;
+    padding-bottom: 5px;
+  }
+  p {
+    color: $primary-white;
+    padding: 1rem 0rem;
+    font-size: $sm-font;
+  }
+  span {
+    color: $primary-gray;
+    font-weight: 200;
+  }
+}
