@@ -16,18 +16,24 @@ const App = () => {
           >
             <h1>OMDb App</h1>
             <p>Looking for the perfect film? Search below. Powered by IMDB.</p>
-            <section className="search">
+            <section className="search-intro">
               <p>Enter your film search below.</p>
-              <input
-                placeholder=""
-                type="text"
-                value={searchValue}
-                onChange={(event) => setSearchValue(event.target.value)}
-              ></input>
-              <button onClick={(event) => setShowResults(!showResults)}>
-                Search
-              </button>
             </section>
+            <div className="search-row">
+              <div className="search-row-input">
+                <input
+                  placeholder=""
+                  type="text"
+                  value={searchValue}
+                  onChange={(event) => setSearchValue(event.target.value)}
+                ></input>
+              </div>
+              <div className="search-row-button">
+                <button onClick={(event) => setShowResults(!showResults)}>
+                  Search
+                </button>
+              </div>
+            </div>
           </section>
         </Fade>
         <Fade bottom when={showResults} collapse>
@@ -85,11 +91,15 @@ const App = () => {
                 <img src="https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/608x608/products/88997/93196/Avengers-Endgame-Final-Style-Poster-buy-original-movie-posters-at-starstills__42370.1563973510.jpg"></img>
               </div>
             </div>
-            <div className="search-again">
-              <input></input>
-              <button onClick={(event) => setShowResults(!showResults)}>
-                Search Again
-              </button>
+            <div className="search-row">
+              <div className="search-row-input">
+                <input></input>
+              </div>
+              <div className="search-row-button">
+                <button onClick={(event) => setShowResults(!showResults)}>
+                  Search Again
+                </button>
+              </div>
             </div>
           </section>
         </Fade>
