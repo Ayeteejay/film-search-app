@@ -33,6 +33,7 @@ body {
     margin: 0 0 0.4rem 0;
     text-transform: uppercase;
     font-size: $xsmall;
+    margin: 0 0 0.2rem 0;
   }
   p {
     font-size: $medium;
@@ -43,7 +44,6 @@ body {
 }
 .site-container {
   width: 80vw;
-  // height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,10 +63,13 @@ body {
     border: 1px solid $secondary-blue;
     background-color: $secondary-blue;
   }
+  @media only screen and (max-width: 600px) {
+    padding: 0 0 15rem 0;
+  }
 }
 
 .header {
-  padding: 10rem 3rem;
+  padding: 10rem 3rem 20rem 3rem;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -74,20 +77,23 @@ body {
 }
 
 .search-intro {
-  border-top: 1px solid $secondary-gray;
   padding: 3rem 0 0 0;
   margin: 4rem 0 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   p {
-    color: $primary-white;
+    color: $primary-gray;
   }
 }
 .results {
   display: flex;
   width: 60vw;
   flex-direction: column;
+  height: 100vh;
+  padding: 3rem 0 0 0;
+  @media only screen and (max-width: 600px) {
+  }
 }
 .film-title {
 }
@@ -96,7 +102,7 @@ body {
   padding: 0 0 1rem 0;
   margin: 0 0 1rem 0;
   display: flex;
-  @media (max-width: 600px) {
+  @media only screen and (max-width: 600px) {
     flex-direction: column;
   }
 }
@@ -111,7 +117,7 @@ body {
     color: $primary-gray;
     font-weight: 200;
   }
-  @media (max-width: 600px) {
+  @media only screen and (max-width: 600px) {
     padding: 1rem 1rem 1rem 0;
   }
 }
@@ -119,47 +125,52 @@ body {
 .poster {
   display: flex;
   align-items: center;
-
   img {
     max-width: 250px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
+    transition: 0.3s;
   }
-}
-.release {
-  padding: 2rem 0;
-}
-.runtime {
-  padding: 2rem 0;
-}
-.genre {
-  padding: 2rem 0;
-}
-.rating {
-  padding: 2rem 0;
-}
-.genre {
-  padding: 2rem 0;
+  img:hover {
+    transform: scale(1.1);
+  }
+  @media only screen and (max-width: 600px) {
+    img {
+      max-width: 100%;
+    }
+  }
 }
 .facts {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  @media only screen and (max-width: 1200px) {
+    flex-direction: column;
+  }
 }
-.starring {
+.facts > div {
+  padding: 2rem 0;
+  @media only screen and (max-width: 1200px) {
+    padding: 0.5rem 0;
+  }
+}
+.starring,
+.details {
   padding: 0 0 2rem 0;
+  @media only screen and (max-width: 1200px) {
+    padding: 0.5rem 0;
+  }
 }
 
-.details {
-}
 // Search section
 .search-row {
   display: flex;
-  @media (max-width: 600px) {
+  @media only screen and (max-width: 600px) {
     flex-direction: column;
   }
 }
 .search-row-input {
   flex-grow: 4;
+
   input {
     padding: 1rem;
     border-radius: 0;
@@ -178,7 +189,11 @@ body {
   ::placeholder {
     color: $primary-white;
   }
-  @media (max-width: 600px) {
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    input {
+      margin: 1rem 0;
+    }
   }
 }
 .search-row-button {
@@ -187,11 +202,13 @@ body {
 .footer {
   font-size: $small;
   color: $primary-white;
-  font-weight: regular;
+  font-weight: 400;
   display: flex;
+  margin: 0;
   justify-content: space-between;
   position: relative;
   border-top: 1px solid $secondary-gray;
+
   a {
     color: $primary-white;
     transition: 0.3s;
@@ -203,6 +220,7 @@ body {
   a:hover {
     border-bottom: 1px solid $secondary-blue;
     padding-bottom: 5px;
+    color: $secondary-blue;
   }
   p {
     color: $primary-white;
@@ -212,5 +230,11 @@ body {
   span {
     color: $primary-gray;
     font-weight: 200;
+  }
+  @media only screen and (max-width: 600px) {
+    margin: 500px 0 0 0;
+  }
+  @media only screen and (max-width: 1200px) {
+    margin: 600px 0 0 0;
   }
 }

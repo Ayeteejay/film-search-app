@@ -14,10 +14,9 @@ const App = () => {
             className="header"
             style={{ display: !showResults ? "inherit" : "none" }}
           >
-            <h1>OMDb App</h1>
-            <p>Looking for the perfect film? Search below. Powered by IMDB.</p>
             <section className="search-intro">
-              <p>Enter your film search below.</p>
+              <h1>OMDb App</h1>
+              <p>Search for movies by name. Powered by IMBD.</p>
             </section>
             <div className="search-row">
               <div className="search-row-input">
@@ -45,22 +44,22 @@ const App = () => {
               <h2>Star Wars</h2>
             </div>
             <div className="film-content">
-              {/* Left Side */}
+              {/* Content Side */}
               <div className="description">
                 <div className="facts">
-                  <div className="release">
+                  <div>
                     <h5>Release Date</h5>
                     <p>October 20, 2020</p>
                   </div>
-                  <div className="rating">
+                  <div>
                     <h5>Rating</h5>
                     <p>PG</p>
                   </div>
-                  <div className="runtime">
+                  <div>
                     <h5>Runtime</h5>
                     <p>152mins</p>
                   </div>
-                  <div className="genre">
+                  <div>
                     <h5>Genre</h5>
                     <p>Sci-fi Adventure</p>
                   </div>
@@ -86,7 +85,7 @@ const App = () => {
                   </p>
                 </div>
               </div>
-              {/* Right Side */}
+              {/* Poster Side */}
               <div className="poster">
                 <img src="https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/608x608/products/88997/93196/Avengers-Endgame-Final-Style-Poster-buy-original-movie-posters-at-starstills__42370.1563973510.jpg"></img>
               </div>
