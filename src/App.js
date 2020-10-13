@@ -6,7 +6,8 @@ import Fade from "react-reveal/Fade";
 const App = () => {
   const [searchValue, setSearchValue] = useState("");
   const [showResults, setShowResults] = useState(false);
-  const [resultData, setResultData] = useState([]);
+  const [resultData, setResultData] = useState({});
+
   return (
     <React.Fragment>
       <div className="site-container">
@@ -28,12 +29,6 @@ const App = () => {
                   onChange={(event) => setSearchValue(event.target.value)}
                 ></input>
               </div>
-              {/* <div className="search-row-button">
-                <button onClick={(event) => setShowResults(!showResults)}>
-                  Search
-                </button>
-              </div> */}
-
               <div className="search-row-button">
                 <button
                   onClick={() => {
@@ -41,13 +36,10 @@ const App = () => {
                       `http://www.omdbapi.com/?t=${searchValue}&apikey=2af34d77`
                     )
                       .then((response) => response.json())
-                      // .then((data) => console.log(data))
-                      .then(({ data: resultData }) => {
-                        setResultData(resultData);
-                      })
-                      // .then((data) => setResultData(data))
+                      .then((data)=>setResultData(data))              
+                      .then(()=>setSearchValue("")) 
                       .then((event) => setShowResults(!showResults))
-                      .then(() => console.log(resultData));
+                      .catch((error)=>console.log(error))
                   }}
                 >
                   Search
@@ -62,7 +54,7 @@ const App = () => {
             style={{ display: showResults ? "inherit" : "none" }}
           >
             <div className="film-title">
-              <h2>Star Wars</h2>
+                <h2>{resultData["Title"]}</h2>                
             </div>
             <div className="film-content">
               {/* Content Side */}
@@ -70,54 +62,58 @@ const App = () => {
                 <div className="facts">
                   <div>
                     <h5>Release Date</h5>
-                    <p>{resultData}</p>
+                <p>{resultData["Released"]}</p>
                   </div>
                   <div>
                     <h5>Rating</h5>
-                    <p>PG</p>
+                <p>{resultData["Rated"]}</p>
                   </div>
                   <div>
                     <h5>Runtime</h5>
-                    <p>152mins</p>
+                <p>{resultData["Runtime"]}</p>
                   </div>
                   <div>
                     <h5>Genre</h5>
-                    <p>Sci-fi Adventure</p>
+                <p>{resultData["Genre"]}</p>
                   </div>
                 </div>
                 <div className="starring">
-                  <h5>Staring</h5>
-                  <p>Someone Jones, Someone Harris</p>
+                  <h5>Starring</h5>
+                <p>{resultData["Actors"]}</p>
                 </div>
                 <div className="details">
                   <h5>Movie Description</h5>
                   <p>
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout. The point of using Lorem Ipsum is that it has a
-                    more-or-less normal distribution of letters, as opposed to
-                    using 'Content here, content here', making it look like
-                    readable English. Many desktop publishing packages and web
-                    page editors now use Lorem Ipsum as their default model
-                    text, and a search for 'lorem ipsum' will uncover many web
-                    sites still in their infancy. Various versions have evolved
-                    over the years, sometimes by accident, sometimes on purpose
-                    (injected humour and the like).
+                   {resultData["Plot"]}
                   </p>
                 </div>
               </div>
               {/* Poster Side */}
-              <div className="poster">
-                <img src="https://cdn11.bigcommerce.com/s-ydriczk/images/stencil/608x608/products/88997/93196/Avengers-Endgame-Final-Style-Poster-buy-original-movie-posters-at-starstills__42370.1563973510.jpg"></img>
+              <div className="poster" style={{display:resultData["Poster"] === "N/A" ? "none" : "flex"}}>
+                <img src={resultData["Poster"]} alt="Movie poster"></img>
               </div>
             </div>
             <div className="search-row">
               <div className="search-row-input">
-                <input></input>
+              <input
+                  placeholder=""
+                  type="text"
+                  value={searchValue}
+                  onChange={(event) => setSearchValue(event.target.value)}
+                ></input>
               </div>
               <div className="search-row-button">
-                <button onClick={(event) => setShowResults(!showResults)}>
-                  Search Again
+              <button
+                  onClick={() => {
+                    fetch(
+                      `http://www.omdbapi.com/?t=${searchValue}&apikey=2af34d77`
+                    )
+                      .then((response) => response.json())
+                      .then((data)=>setResultData(data))    
+                      .then(()=>setSearchValue(""))             
+                  }}
+                >
+                  Search
                 </button>
               </div>
             </div>
