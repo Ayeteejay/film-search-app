@@ -6,6 +6,7 @@ import Fade from "react-reveal/Fade";
 const App = () => {
   const [searchValue, setSearchValue] = useState("");
   const [showResults, setShowResults] = useState(false);
+  const [resultData, setResultData] = useState([]);
   return (
     <React.Fragment>
       <div className="site-container">
@@ -27,8 +28,28 @@ const App = () => {
                   onChange={(event) => setSearchValue(event.target.value)}
                 ></input>
               </div>
-              <div className="search-row-button">
+              {/* <div className="search-row-button">
                 <button onClick={(event) => setShowResults(!showResults)}>
+                  Search
+                </button>
+              </div> */}
+
+              <div className="search-row-button">
+                <button
+                  onClick={() => {
+                    fetch(
+                      `http://www.omdbapi.com/?t=${searchValue}&apikey=2af34d77`
+                    )
+                      .then((response) => response.json())
+                      // .then((data) => console.log(data))
+                      .then(({ data: resultData }) => {
+                        setResultData(resultData);
+                      })
+                      // .then((data) => setResultData(data))
+                      .then((event) => setShowResults(!showResults))
+                      .then(() => console.log(resultData));
+                  }}
+                >
                   Search
                 </button>
               </div>
@@ -49,7 +70,7 @@ const App = () => {
                 <div className="facts">
                   <div>
                     <h5>Release Date</h5>
-                    <p>October 20, 2020</p>
+                    <p>{resultData}</p>
                   </div>
                   <div>
                     <h5>Rating</h5>
