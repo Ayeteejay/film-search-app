@@ -8,7 +8,8 @@ const [searchValue, setSearchValue] = useState("");
 const [showResults, setShowResults] = useState(false);
 const [resultData, setResultData] = useState({});
 const [showError, setShowError] = useState(false);
-const [dataSuccess, setDataSuccess] = useState(false);
+const errorMessages = ["Bogus! Doesn't look like we have info on that movie. Try searching for another.", "Bummer! Doesn't look like we have any info on this one. Care to try another?", "Looks like this movie might not even exist. Maybe try YouTube?"];
+const randomError = () => errorMessages[Math.floor(Math.random() * 3)];
 const key = process.env.REACT_APP_API_KEY;
 
 useEffect(()=>{
@@ -17,7 +18,6 @@ useEffect(()=>{
   setShowError(!showError)
     }, 3000);
   }
-
 })
   return (
     <React.Fragment>
@@ -68,17 +68,18 @@ useEffect(()=>{
           <section
             className="results" style={{ display: showResults ? "inherit" : "none" }}
           >
-            <div className="film-title">
+            <div>
                 <h2>{resultData["Title"]}</h2>
                 <Fade bottom >
                 <div className="error-row" style={{display: resultData.Title ? "none" :"block"}}>
-                <p>Bogus! Doesn't look like we have info on that movie.</p>
+                <p>Bogus! Doesn't look like we have info on that movie. Try searching for another.</p>
             </div>
                 </Fade>          
             </div>
-            <div className="film-content">
+          <Fade>
+            <div className="film-content" style={{display: resultData["Response"] === "False" ? "none" : "flex"}}>
               {/* Content Side */}
-              <div className="description">
+              <div className="description" >
                 <div className="facts">
                   <div>
                     <h5>Release Date</h5>
@@ -113,6 +114,7 @@ useEffect(()=>{
                 <img src={resultData["Poster"]} alt={resultData["Title"]}></img>
               </div>
             </div>
+            </Fade>
             <div className="search-row">
               <div className="search-row-input">
               <input

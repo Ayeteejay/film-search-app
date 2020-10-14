@@ -1,18 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700;800&display=swap");
 
+// Font
 $primary-font: "Work Sans", sans-serif;
 
+// Colors
 $primary-black: #151515;
 $primary-gray: #9b9b9b;
 $primary-white: #fff;
 $secondary-blue: #0e8bff;
 $secondary-gray: #3e3e3e;
 
-$xsmall: 0.6rem;
+//Font sizing and spacing
+$xsmall: 0.7rem;
 $small: 0.9rem;
 $medium: 1rem;
 $large: 1.5rem;
 $xlarge: 2rem;
+
+// Hover state animation speed
+@mixin transition-speed {
+  transition: 0.3s;
+}
+
+// Border color around various elements
+@mixin custom-border($border-color) {
+  border: 1px solid $border-color;
+}
 
 body {
   background-color: $primary-black;
@@ -34,6 +47,7 @@ body {
     text-transform: uppercase;
     font-size: $xsmall;
     margin: 0 0 0.2rem 0;
+    letter-spacing: 1px;
   }
   p {
     font-size: $medium;
@@ -48,19 +62,19 @@ body {
   flex-direction: column;
   align-items: center;
   button {
+    @include transition-speed;
+    @include custom-border($secondary-gray);
     width: 100%;
     padding: 1em;
     color: $primary-white;
-    border: 1px solid $secondary-gray;
     background-color: $primary-black;
-    transition: 0.4s;
     font-size: $medium;
     cursor: pointer;
     outline: none;
   }
   button:hover {
+    @include custom-border($secondary-blue);
     color: $primary-white;
-    border: 1px solid $secondary-blue;
     background-color: $secondary-blue;
   }
   @media only screen and (max-width: 600px) {
@@ -75,28 +89,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-.search-intro {
-  padding: 3rem 0 0 0;
-  margin: 4rem 0 2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  p {
-    color: $primary-gray;
-  }
-}
-.results {
-  display: flex;
-  width: 60vw;
-  flex-direction: column;
-  height: 100vh;
-  padding: 3rem 0 0 0;
-  @media only screen and (max-width: 600px) {
-  }
-}
-.film-title {
-}
+// Movie contents
 .film-content {
   border-top: 1px solid $secondary-gray;
   padding: 0 0 1rem 0;
@@ -126,9 +119,9 @@ body {
   display: flex;
   align-items: center;
   img {
+    @include transition-speed;
     max-width: 250px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
-    transition: 0.3s;
   }
   img:hover {
     transform: scale(1.1);
@@ -162,6 +155,17 @@ body {
 }
 
 // Search
+
+.search-intro {
+  padding: 3rem 0 0 0;
+  margin: 4rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    color: $primary-gray;
+  }
+}
 .search-row {
   display: flex;
   @media only screen and (max-width: 600px) {
@@ -172,15 +176,14 @@ body {
   flex-grow: 4;
 
   input {
+    @include transition-speed;
+    @include custom-border($secondary-gray);
     padding: 1rem;
     border-radius: 0;
-    border: none;
     width: 100%;
-    border: 1px solid $secondary-gray;
     background-color: $primary-black;
     font-size: $medium;
     color: $primary-white;
-    transition: 0.3s;
     outline: none;
   }
   input:focus {
@@ -198,6 +201,15 @@ body {
 }
 .search-row-button {
   flex-grow: 1;
+}
+.results {
+  display: flex;
+  width: 60vw;
+  flex-direction: column;
+  height: 100vh;
+  padding: 3rem 0 0 0;
+  @media only screen and (max-width: 600px) {
+  }
 }
 // Error
 .error-row {
@@ -218,8 +230,8 @@ body {
   border-top: 1px solid $secondary-gray;
 
   a {
+    @include transition-speed;
     color: $primary-white;
-    transition: 0.3s;
     position: relative;
     text-decoration: none;
     border-bottom: 1px solid white;
