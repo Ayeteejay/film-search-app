@@ -4,10 +4,12 @@ import Footer from "./components/footer";
 import Fade from "react-reveal/Fade";
 
 const App = () => {
-  const [searchValue, setSearchValue] = useState("");
-  const [showResults, setShowResults] = useState(false);
-  const [resultData, setResultData] = useState({});
+const [searchValue, setSearchValue] = useState("");
+const [showResults, setShowResults] = useState(false);
+const [resultData, setResultData] = useState({});
 const [showError, setShowError] = useState(false);
+const [dataSuccess, setDataSuccess] = useState(false);
+const key = process.env.REACT_APP_API_KEY;
 
 useEffect(()=>{
   if(showError){
@@ -15,6 +17,7 @@ useEffect(()=>{
   setShowError(!showError)
     }, 3000);
   }
+
 })
   return (
     <React.Fragment>
@@ -42,7 +45,7 @@ useEffect(()=>{
                   onClick={() => {
                     !searchValue.length ? setShowError(!showError): 
                     fetch(
-                      `http://www.omdbapi.com/?t=${searchValue}&apikey=2af34d77`
+                      `http://www.omdbapi.com/?t=${searchValue}&apikey=${key}`
                     )
                       .then((response) => response.json())
                       .then((data)=>setResultData(data))              
@@ -66,7 +69,12 @@ useEffect(()=>{
             className="results" style={{ display: showResults ? "inherit" : "none" }}
           >
             <div className="film-title">
-                <h2>{resultData["Title"]}</h2>              
+                <h2>{resultData["Title"]}</h2>
+                <Fade bottom >
+                <div className="error-row" style={{display: resultData.Title ? "none" :"block"}}>
+                <p>Bogus! Doesn't look like we have info on that movie.</p>
+            </div>
+                </Fade>          
             </div>
             <div className="film-content">
               {/* Content Side */}
@@ -119,10 +127,10 @@ useEffect(()=>{
                   onClick={() => {
                     !searchValue.length ? setShowError(!showError): 
                     fetch(
-                      `http://www.omdbapi.com/?t=${searchValue}&apikey=2af34d77`
+                      `http://www.omdbapi.com/?t=${searchValue}&apikey=${key}`
                     )
                       .then((response) => response.json())
-                      .then((data)=>setResultData(data))    
+                      .then((data)=>setResultData(data))
                       .then(()=>setSearchValue(""))       
                   }}
                 >
