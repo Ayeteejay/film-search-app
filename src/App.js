@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./App.scss";
 import Footer from "./components/footer";
 import Fade from "react-reveal/Fade";
@@ -7,7 +7,15 @@ const App = () => {
   const [searchValue, setSearchValue] = useState("");
   const [showResults, setShowResults] = useState(false);
   const [resultData, setResultData] = useState({});
+const [showError, setShowError] = useState(false);
 
+useEffect(()=>{
+  if(showError){
+    setTimeout(() => {
+  setShowError(!showError)
+    }, 3000);
+  }
+})
   return (
     <React.Fragment>
       <div className="site-container">
@@ -32,6 +40,7 @@ const App = () => {
               <div className="search-row-button">
                 <button
                   onClick={() => {
+                    !searchValue.length ? setShowError(!showError): 
                     fetch(
                       `http://www.omdbapi.com/?t=${searchValue}&apikey=2af34d77`
                     )
@@ -39,22 +48,25 @@ const App = () => {
                       .then((data)=>setResultData(data))              
                       .then(()=>setSearchValue("")) 
                       .then((event) => setShowResults(!showResults))
-                      .catch((error)=>console.log(error))
                   }}
                 >
                   Search
                 </button>
               </div>
             </div>
+            <Fade bottom when={showError} collapse>
+            <div className="error-row">
+                <p>Please input at least one character.</p>
+            </div>
+            </Fade>
           </section>
         </Fade>
         <Fade bottom when={showResults} collapse>
           <section
-            className="results"
-            style={{ display: showResults ? "inherit" : "none" }}
+            className="results" style={{ display: showResults ? "inherit" : "none" }}
           >
             <div className="film-title">
-                <h2>{resultData["Title"]}</h2>                
+                <h2>{resultData["Title"]}</h2>              
             </div>
             <div className="film-content">
               {/* Content Side */}
@@ -90,7 +102,7 @@ const App = () => {
               </div>
               {/* Poster Side */}
               <div className="poster" style={{display:resultData["Poster"] === "N/A" ? "none" : "flex"}}>
-                <img src={resultData["Poster"]} alt="Movie poster"></img>
+                <img src={resultData["Poster"]} alt={resultData["Title"]}></img>
               </div>
             </div>
             <div className="search-row">
@@ -105,18 +117,24 @@ const App = () => {
               <div className="search-row-button">
               <button
                   onClick={() => {
+                    !searchValue.length ? setShowError(!showError): 
                     fetch(
                       `http://www.omdbapi.com/?t=${searchValue}&apikey=2af34d77`
                     )
                       .then((response) => response.json())
                       .then((data)=>setResultData(data))    
-                      .then(()=>setSearchValue(""))             
+                      .then(()=>setSearchValue(""))       
                   }}
                 >
                   Search
                 </button>
               </div>
             </div>
+            <Fade bottom when={showError} collapse>
+            <div className="error-row">
+                <p>Please input at least one character.</p>
+            </div>
+            </Fade>
           </section>
         </Fade>
       </div>

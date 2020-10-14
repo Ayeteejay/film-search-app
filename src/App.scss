@@ -161,7 +161,7 @@ body {
   }
 }
 
-// Search section
+// Search
 .search-row {
   display: flex;
   @media only screen and (max-width: 600px) {
@@ -199,6 +199,14 @@ body {
 .search-row-button {
   flex-grow: 1;
 }
+// Error
+.error-row {
+  p {
+    padding: 1rem 0;
+    color: $secondary-blue;
+  }
+}
+// Footer
 .footer {
   font-size: $small;
   color: $primary-white;
